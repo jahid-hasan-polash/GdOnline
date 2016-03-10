@@ -1,17 +1,44 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the Closure to execute when that URI is requested.
-|
-*/
+Route::get('/', ['as'=>'home','uses'=>'UserController@index']);
 
-Route::get('/', function()
-{
-	return View::make('hello');
+Route::group(['before' => 'guest'], function(){
+	Route::controller('password', 'RemindersController');
+
+	Route::get('register',['as'=>'register','uses'=>'AuthController@register']);
+	Route::post('register',['uses'=>'AuthController@doRegister']);
+	Route::get('login', ['as'=>'login','uses' => 'AuthController@login']);
+	Route::post('login', array('uses' => 'AuthController@doLogin'));
 });
+
+Route::group(array('before' => 'auth'), function()
+{
+
+	Route::get('logout', ['as' => 'logout', 'uses' => 'AuthController@logout']);
+	Route::get('dashboard', array('as' => 'dashboard', 'uses' => 'AuthController@dashboard'));
+	Route::get('change-password', array('as' => 'password.change', 'uses' => 'AuthController@changePassword'));
+	Route::post('change-password', array('as' => 'password.doChange', 'uses' => 'AuthController@doChangePassword'));
+	Route::get('profile',array('as'=>'user.profile', 'uses'=>'UserController@show'));
+	Route::get('GdProfile',array('as'=>'gd.profile', 'uses'=>'GdController@show');
+
+});
+
+
+
+//This route group is serious need to edit
+/*Route::group(array('before' => 'auth'), function()
+{
+
+	Route::get('user/delete/{id}', 'UsersController@destroy');
+
+
+	Route::get('user/{id}/create',['as'=>'user.edit','uses'=>'UsersController@edit']);
+	Route::put('user/{id}',['as'=>'user.update','uses'=>'UsersController@update']);
+	Route::get('users',['as'=>'user.index','uses'=>'UsersController@index']);
+	Route::get('home',['as'=>'home','uses'=>'UsersController@home']);
+	Route::get('logout',['as'=>'logout', 'uses'=>'UsersController@getLogout']);
+
+	Route::resource('member','MembersController');
+
+
+});*/
