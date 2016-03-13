@@ -14,9 +14,12 @@ class CreateGdReplyTable extends Migration {
 	{
 		Schema::create('gd_reply', function(Blueprint $table)
 		{
-			$table->integer('Gd_id');
+			$table->integer('Gd_id')->unsigned()->index();
+			$table->foreign('Gd_id')
+					->references('id')->on('gd_info')
+					->onDelete('cascade')->onUpdate('cascade');
 			$table->integer('admin_level');
-			$table->text('reply');
+			$table->text('reply')->nullable();
 			$table->timestamps();
 		});
 	}

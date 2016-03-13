@@ -19,7 +19,7 @@ class CreateGdInfoTable extends Migration {
 			$table->string('occured_at');
 			$table->text('description');
 			$table->text('requirement')->nullable();
-			$table->integer('gd_no')->nullable();
+			//$table->integer('gd_no')->nullable();
 			$table->timestamps();
 		});
 	}
