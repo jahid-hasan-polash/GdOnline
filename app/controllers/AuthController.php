@@ -7,7 +7,7 @@ class AuthController extends \BaseController {
 	* response view register.blade.php page
 	*/
 	public function register(){
-		return View::make('register')->with('title',"Register");
+		return View::make('auth.register')->with('title',"Register");
 	}
 
 
@@ -54,7 +54,7 @@ class AuthController extends \BaseController {
 	* response view login.blade.php page
 	*/
 	public function Login(){
-		return View::make('login')->with('title', 'Login');
+		return View::make('auth.login')->with('title', 'Login');
 	}
 
 	/**Login 
@@ -91,7 +91,7 @@ class AuthController extends \BaseController {
 
 			if (Auth::attempt($credentials))
 			{
-				return Redirect::intended('register');
+				return Redirect::intended('dashboard');
 			} else
 			{
 				return Redirect::route('login')
@@ -151,6 +151,12 @@ class AuthController extends \BaseController {
 							->with('error',"Something went wrong.Please Try again.");
 			}
 		}
+	}
+
+
+	public function dashboard(){
+		return View::make('dashboard')
+					->with('title','Dashboard');
 	}
 
 

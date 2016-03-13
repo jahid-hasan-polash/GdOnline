@@ -1,6 +1,9 @@
 <?php
 
-Route::get('/', ['as'=>'home','uses'=>'UserController@index']);
+//Route::get('/', ['as'=>'home','uses'=>'HomeController@showWelcome']);
+Route::get('/',function(){
+	return Redirect::route('dashboard');
+});
 
 Route::group(['before' => 'guest'], function(){
 	Route::controller('password', 'RemindersController');
@@ -19,7 +22,11 @@ Route::group(array('before' => 'auth'), function()
 	Route::get('change-password', array('as' => 'password.change', 'uses' => 'AuthController@changePassword'));
 	Route::post('change-password', array('as' => 'password.doChange', 'uses' => 'AuthController@doChangePassword'));
 	Route::get('profile',array('as'=>'user.profile', 'uses'=>'UserController@show'));
-	Route::get('GdProfile',array('as'=>'gd.profile', 'uses'=>'GdController@show');
+
+	Route::get('editProfile',array('as'=>'user.edit','uses'=>'UserController@edit'));
+	Route::post('editProfile',array('uses'=>'UserController@update'));
+
+	Route::get('GdProfile',array('as'=>'gd.profile', 'uses'=>'GdController@show'));
 
 });
 

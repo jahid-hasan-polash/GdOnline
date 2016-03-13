@@ -1,5 +1,258 @@
 [
     {
+        "name": "nikic/php-parser",
+        "version": "v0.9.5",
+        "version_normalized": "0.9.5.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/nikic/PHP-Parser.git",
+            "reference": "ef70767475434bdb3615b43c327e2cae17ef12eb"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/ef70767475434bdb3615b43c327e2cae17ef12eb",
+            "reference": "ef70767475434bdb3615b43c327e2cae17ef12eb",
+            "shasum": ""
+        },
+        "require": {
+            "ext-tokenizer": "*",
+            "php": ">=5.2"
+        },
+        "time": "2014-07-23 18:24:17",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "0.9-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "PHPParser": "lib/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "authors": [
+            {
+                "name": "Nikita Popov"
+            }
+        ],
+        "description": "A PHP parser written in PHP",
+        "keywords": [
+            "parser",
+            "php"
+        ]
+    },
+    {
+        "name": "symfony/finder",
+        "version": "v2.5.12",
+        "version_normalized": "2.5.12.0",
+        "target-dir": "Symfony/Component/Finder",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/symfony/Finder.git",
+            "reference": "e527ebf47ff912a45e148b7d0b107b80ec0b3cc2"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/symfony/Finder/zipball/e527ebf47ff912a45e148b7d0b107b80ec0b3cc2",
+            "reference": "e527ebf47ff912a45e148b7d0b107b80ec0b3cc2",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.3"
+        },
+        "time": "2015-01-03 08:01:13",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.5-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Symfony\\Component\\Finder\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Symfony Community",
+                "homepage": "http://symfony.com/contributors"
+            },
+            {
+                "name": "Fabien Potencier",
+                "email": "fabien@symfony.com"
+            }
+        ],
+        "description": "Symfony Finder Component",
+        "homepage": "http://symfony.com"
+    },
+    {
+        "name": "symfony/filesystem",
+        "version": "v2.8.3",
+        "version_normalized": "2.8.3.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/symfony/filesystem.git",
+            "reference": "65cb36b6539b1d446527d60457248f30d045464d"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/symfony/filesystem/zipball/65cb36b6539b1d446527d60457248f30d045464d",
+            "reference": "65cb36b6539b1d446527d60457248f30d045464d",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.9"
+        },
+        "time": "2016-02-22 15:02:30",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.8-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Symfony\\Component\\Filesystem\\": ""
+            },
+            "exclude-from-classmap": [
+                "/Tests/"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Fabien Potencier",
+                "email": "fabien@symfony.com"
+            },
+            {
+                "name": "Symfony Community",
+                "homepage": "https://symfony.com/contributors"
+            }
+        ],
+        "description": "Symfony Filesystem Component",
+        "homepage": "https://symfony.com"
+    },
+    {
+        "name": "symfony/console",
+        "version": "v2.5.12",
+        "version_normalized": "2.5.12.0",
+        "target-dir": "Symfony/Component/Console",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/symfony/console.git",
+            "reference": "a43e750b4c74f3bdfca77c79c343033d35a6cd6e"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/symfony/console/zipball/a43e750b4c74f3bdfca77c79c343033d35a6cd6e",
+            "reference": "a43e750b4c74f3bdfca77c79c343033d35a6cd6e",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.3"
+        },
+        "require-dev": {
+            "psr/log": "~1.0",
+            "symfony/event-dispatcher": "~2.1"
+        },
+        "suggest": {
+            "psr/log": "For using the console logger",
+            "symfony/event-dispatcher": ""
+        },
+        "time": "2015-02-08 07:07:45",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.5-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Symfony\\Component\\Console\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Symfony Community",
+                "homepage": "http://symfony.com/contributors"
+            },
+            {
+                "name": "Fabien Potencier",
+                "email": "fabien@symfony.com"
+            }
+        ],
+        "description": "Symfony Console Component",
+        "homepage": "http://symfony.com"
+    },
+    {
+        "name": "classpreloader/classpreloader",
+        "version": "1.0.2",
+        "version_normalized": "1.0.2.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/ClassPreloader/ClassPreloader.git",
+            "reference": "2c9f3bcbab329570c57339895bd11b5dd3b00877"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/ClassPreloader/ClassPreloader/zipball/2c9f3bcbab329570c57339895bd11b5dd3b00877",
+            "reference": "2c9f3bcbab329570c57339895bd11b5dd3b00877",
+            "shasum": ""
+        },
+        "require": {
+            "nikic/php-parser": "~0.9",
+            "php": ">=5.3.3",
+            "symfony/console": "~2.1",
+            "symfony/filesystem": "~2.1",
+            "symfony/finder": "~2.1"
+        },
+        "time": "2014-03-12 00:05:31",
+        "bin": [
+            "classpreloader.php"
+        ],
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.0-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "ClassPreloader": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "description": "Helps class loading performance by generating a single PHP file containing all of the autoloaded files for a specific use case",
+        "keywords": [
+            "autoload",
+            "class",
+            "preload"
+        ]
+    },
+    {
         "name": "symfony/translation",
         "version": "v2.5.12",
         "version_normalized": "2.5.12.0",
@@ -580,55 +833,6 @@
         "homepage": "http://symfony.com"
     },
     {
-        "name": "symfony/finder",
-        "version": "v2.5.12",
-        "version_normalized": "2.5.12.0",
-        "target-dir": "Symfony/Component/Finder",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/symfony/Finder.git",
-            "reference": "e527ebf47ff912a45e148b7d0b107b80ec0b3cc2"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/symfony/Finder/zipball/e527ebf47ff912a45e148b7d0b107b80ec0b3cc2",
-            "reference": "e527ebf47ff912a45e148b7d0b107b80ec0b3cc2",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.3"
-        },
-        "time": "2015-01-03 08:01:13",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "2.5-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-0": {
-                "Symfony\\Component\\Finder\\": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Symfony Community",
-                "homepage": "http://symfony.com/contributors"
-            },
-            {
-                "name": "Fabien Potencier",
-                "email": "fabien@symfony.com"
-            }
-        ],
-        "description": "Symfony Finder Component",
-        "homepage": "http://symfony.com"
-    },
-    {
         "name": "symfony/dom-crawler",
         "version": "v2.5.12",
         "version_normalized": "2.5.12.0",
@@ -734,63 +938,6 @@
             }
         ],
         "description": "Symfony CssSelector Component",
-        "homepage": "http://symfony.com"
-    },
-    {
-        "name": "symfony/console",
-        "version": "v2.5.12",
-        "version_normalized": "2.5.12.0",
-        "target-dir": "Symfony/Component/Console",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/symfony/console.git",
-            "reference": "a43e750b4c74f3bdfca77c79c343033d35a6cd6e"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/symfony/console/zipball/a43e750b4c74f3bdfca77c79c343033d35a6cd6e",
-            "reference": "a43e750b4c74f3bdfca77c79c343033d35a6cd6e",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.3"
-        },
-        "require-dev": {
-            "psr/log": "~1.0",
-            "symfony/event-dispatcher": "~2.1"
-        },
-        "suggest": {
-            "psr/log": "For using the console logger",
-            "symfony/event-dispatcher": ""
-        },
-        "time": "2015-02-08 07:07:45",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "2.5-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-0": {
-                "Symfony\\Component\\Console\\": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Symfony Community",
-                "homepage": "http://symfony.com/contributors"
-            },
-            {
-                "name": "Fabien Potencier",
-                "email": "fabien@symfony.com"
-            }
-        ],
-        "description": "Symfony Console Component",
         "homepage": "http://symfony.com"
     },
     {
@@ -1109,67 +1256,6 @@
         ]
     },
     {
-        "name": "patchwork/utf8",
-        "version": "v1.3.0",
-        "version_normalized": "1.3.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/tchwork/utf8.git",
-            "reference": "3bd61bc162ed5c5f4a11e40a0106acc255b451d9"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/tchwork/utf8/zipball/3bd61bc162ed5c5f4a11e40a0106acc255b451d9",
-            "reference": "3bd61bc162ed5c5f4a11e40a0106acc255b451d9",
-            "shasum": ""
-        },
-        "require": {
-            "lib-pcre": ">=7.3",
-            "php": ">=5.3.0"
-        },
-        "suggest": {
-            "ext-iconv": "Use iconv for best performance",
-            "ext-intl": "Use Intl for best performance",
-            "ext-mbstring": "Use Mbstring for best performance",
-            "ext-wfio": "Use WFIO for UTF-8 filesystem access on Windows"
-        },
-        "time": "2015-12-15 15:34:15",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "1.3-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Patchwork\\": "src/Patchwork/"
-            },
-            "classmap": [
-                "src/Normalizer.php"
-            ]
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "(Apache-2.0 or GPL-2.0)"
-        ],
-        "authors": [
-            {
-                "name": "Nicolas Grekas",
-                "email": "p@tchwork.com"
-            }
-        ],
-        "description": "Portable and performant UTF-8, Unicode and Grapheme Clusters for PHP",
-        "homepage": "https://github.com/tchwork/utf8",
-        "keywords": [
-            "grapheme",
-            "i18n",
-            "unicode",
-            "utf-8",
-            "utf8"
-        ]
-    },
-    {
         "name": "nesbot/carbon",
         "version": "1.17.0",
         "version_normalized": "1.17.0.0",
@@ -1295,53 +1381,6 @@
             "log",
             "logging",
             "psr-3"
-        ]
-    },
-    {
-        "name": "nikic/php-parser",
-        "version": "v0.9.5",
-        "version_normalized": "0.9.5.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/nikic/PHP-Parser.git",
-            "reference": "ef70767475434bdb3615b43c327e2cae17ef12eb"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/ef70767475434bdb3615b43c327e2cae17ef12eb",
-            "reference": "ef70767475434bdb3615b43c327e2cae17ef12eb",
-            "shasum": ""
-        },
-        "require": {
-            "ext-tokenizer": "*",
-            "php": ">=5.2"
-        },
-        "time": "2014-07-23 18:24:17",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "0.9-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-0": {
-                "PHPParser": "lib/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "BSD-3-Clause"
-        ],
-        "authors": [
-            {
-                "name": "Nikita Popov"
-            }
-        ],
-        "description": "A PHP parser written in PHP",
-        "keywords": [
-            "parser",
-            "php"
         ]
     },
     {
@@ -1491,103 +1530,64 @@
         "notification-url": "https://packagist.org/downloads/"
     },
     {
-        "name": "symfony/filesystem",
-        "version": "v2.8.3",
-        "version_normalized": "2.8.3.0",
+        "name": "patchwork/utf8",
+        "version": "v1.3.0",
+        "version_normalized": "1.3.0.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/symfony/filesystem.git",
-            "reference": "65cb36b6539b1d446527d60457248f30d045464d"
+            "url": "https://github.com/tchwork/utf8.git",
+            "reference": "3bd61bc162ed5c5f4a11e40a0106acc255b451d9"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/filesystem/zipball/65cb36b6539b1d446527d60457248f30d045464d",
-            "reference": "65cb36b6539b1d446527d60457248f30d045464d",
+            "url": "https://api.github.com/repos/tchwork/utf8/zipball/3bd61bc162ed5c5f4a11e40a0106acc255b451d9",
+            "reference": "3bd61bc162ed5c5f4a11e40a0106acc255b451d9",
             "shasum": ""
         },
         "require": {
-            "php": ">=5.3.9"
+            "lib-pcre": ">=7.3",
+            "php": ">=5.3.0"
         },
-        "time": "2016-02-22 15:02:30",
+        "suggest": {
+            "ext-iconv": "Use iconv for best performance",
+            "ext-intl": "Use Intl for best performance",
+            "ext-mbstring": "Use Mbstring for best performance",
+            "ext-wfio": "Use WFIO for UTF-8 filesystem access on Windows"
+        },
+        "time": "2015-12-15 15:34:15",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-master": "2.8-dev"
+                "dev-master": "1.3-dev"
             }
         },
         "installation-source": "dist",
         "autoload": {
             "psr-4": {
-                "Symfony\\Component\\Filesystem\\": ""
+                "Patchwork\\": "src/Patchwork/"
             },
-            "exclude-from-classmap": [
-                "/Tests/"
+            "classmap": [
+                "src/Normalizer.php"
             ]
         },
         "notification-url": "https://packagist.org/downloads/",
         "license": [
-            "MIT"
+            "(Apache-2.0 or GPL-2.0)"
         ],
         "authors": [
             {
-                "name": "Fabien Potencier",
-                "email": "fabien@symfony.com"
-            },
-            {
-                "name": "Symfony Community",
-                "homepage": "https://symfony.com/contributors"
+                "name": "Nicolas Grekas",
+                "email": "p@tchwork.com"
             }
         ],
-        "description": "Symfony Filesystem Component",
-        "homepage": "https://symfony.com"
-    },
-    {
-        "name": "classpreloader/classpreloader",
-        "version": "1.0.2",
-        "version_normalized": "1.0.2.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/ClassPreloader/ClassPreloader.git",
-            "reference": "2c9f3bcbab329570c57339895bd11b5dd3b00877"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/ClassPreloader/ClassPreloader/zipball/2c9f3bcbab329570c57339895bd11b5dd3b00877",
-            "reference": "2c9f3bcbab329570c57339895bd11b5dd3b00877",
-            "shasum": ""
-        },
-        "require": {
-            "nikic/php-parser": "~0.9",
-            "php": ">=5.3.3",
-            "symfony/console": "~2.1",
-            "symfony/filesystem": "~2.1",
-            "symfony/finder": "~2.1"
-        },
-        "time": "2014-03-12 00:05:31",
-        "bin": [
-            "classpreloader.php"
-        ],
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "1.0-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-0": {
-                "ClassPreloader": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "description": "Helps class loading performance by generating a single PHP file containing all of the autoloaded files for a specific use case",
+        "description": "Portable and performant UTF-8, Unicode and Grapheme Clusters for PHP",
+        "homepage": "https://github.com/tchwork/utf8",
         "keywords": [
-            "autoload",
-            "class",
-            "preload"
+            "grapheme",
+            "i18n",
+            "unicode",
+            "utf-8",
+            "utf8"
         ]
     },
     {
