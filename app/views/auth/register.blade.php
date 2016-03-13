@@ -26,6 +26,18 @@
     </head>
 
     <body class="register-body">
+
+    <header class="header white-bg">
+        <a href="{{route('dashboard')}}" class="logo" ><span>Gd Online</span></a>
+
+        <div class="pull-right" style="padding-top:20px">
+            <a href="{{route('login')}}" class="btn btn-danger">Login</a>
+        </div>
+
+    </header>
+
+
+
     <div class="container">
             {{ Form::open(array('route' => 'register', 'method' => 'post', 'class' => 'form-signin')) }}
             <h2 class="form-signin-heading">Register now</h2>
