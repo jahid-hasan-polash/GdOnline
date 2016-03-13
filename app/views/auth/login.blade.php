@@ -36,10 +36,16 @@
                     {{ Form::password('password', array('class' => 'form-control', 'placeholder' => 'Password')) }}
 
                 <label class="checkbox">
+                    <span class="pull-left">
+                        <a href="{{URL::route('register')}}"> Not a member Yet?</a>
+                    </span>
+                </label>
+
+                <!--<label class="checkbox">
                     <span class="pull-right">
                         <a data-toggle="modal" href="#myModal"> Forgot Password?</a>
                     </span>
-                </label>
+                </label>-->
                     {{ Form::submit('Log in', array('class' => 'btn btn-lg btn-login btn-block')) }}
             </div>
 
