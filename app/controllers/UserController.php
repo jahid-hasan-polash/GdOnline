@@ -10,7 +10,7 @@ class UserController extends \BaseController {
 	 */
 	public function show()
 	{
-		return View::make('viewPages.profile')->with('title','Profile');
+		return View::make('user.profile')->with('title','Profile');
 	}
 
 	/**
@@ -22,14 +22,10 @@ class UserController extends \BaseController {
 	 */
 	public function edit()
 	{
-		$data=Auth::user()->all();
+		//$data=Auth::user();
 		return View::make('edit.profile')
+							->with('user',Auth::user())
 							->with('title','Edit');
-							/*->with('n-id',$data['n_id'])
-							/*->with('username',$data['username'])
-							->with('address',$data['address'])
-							->with('phone',$data['phone'])
-							->with('email',$data['email']);*/
 
 	}
 
@@ -42,7 +38,15 @@ class UserController extends \BaseController {
 	 */
 	public function update()
 	{
-		//
+		$user= Auth::user();
+		$user->fill(Input::all());
+
+		if($user->save()){
+			return Redirect::route('user.profile')->with('success','Profile Edited Successfully');
+		}
+		else{
+			return Redirect::back()->with('error','Something went wrong.Try Again.')->withInput();
+		}
 	}
 
 	/**

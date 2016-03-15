@@ -21,15 +21,18 @@ Route::group(array('before' => 'auth'), function()
 	Route::get('dashboard', array('as' => 'dashboard', 'uses' => 'AuthController@dashboard'));
 	Route::get('change-password', array('as' => 'password.change', 'uses' => 'AuthController@changePassword'));
 	Route::post('change-password', array('as' => 'password.doChange', 'uses' => 'AuthController@doChangePassword'));
-	Route::get('profile',array('as'=>'user.profile', 'uses'=>'UserController@show'));
+	Route::get('profile', array('as'=>'user.profile', 'uses'=>'UserController@show'));
 
-	Route::get('editProfile',array('as'=>'user.edit','uses'=>'UserController@edit'));
-	Route::post('editProfile',array('uses'=>'UserController@update'));
+	Route::get('profile/edit', array('as'=>'user.edit', 'uses'=>'UserController@edit'));
+	Route::put('profile/update',  array('as'=>'user.update', 'uses'=>'UserController@update'));
 
-	Route::get('create-gd',array('as'=>'gd.create','uses'=>'GdController@create'));
-	Route::post('create-gd',array('uses'=>'GdController@store'));
+	Route::get('create-gd', array('as'=>'gd.create','uses'=>'GdController@create'));
+	Route::post('create-gd', array('as'=>'gd.store','uses'=>'GdController@store'));
 
-	Route::get('GdProfile',array('as'=>'gd.profile', 'uses'=>'GdController@show'));
+	Route::get('gd/{id}/edit', array('as'=>'gd.edit','uses'=>'GdController@edit'));
+	Route::put('gd/{id}', array('as'=>'gd.update','uses'=>'GdController@update'));
+
+	Route::get('GdProfile', array('as'=>'gd.profile', 'uses'=>'GdController@show'));
 
 });
 

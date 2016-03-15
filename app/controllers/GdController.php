@@ -51,6 +51,9 @@ class GdController extends \BaseController {
 		$gd->description = $data['description'];
 		$gd->requirement = $data['requirement'];
 
+		//$userGd= new UserGd;
+
+
 		if($gd->save()){
 				return Redirect::route('dashboard')->with('success','GD created.');
 			}else {
@@ -80,7 +83,11 @@ class GdController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		$gd= GdModel::findOrFail($id);
+
+		return View::make('edit.gd')
+			->with('gd',$gd)
+			->with('title','Edit');
 	}
 
 	/**
@@ -92,7 +99,17 @@ class GdController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$gd= GdModel::findOrFail($id);
+		$gd->fill(Input::all());
+		
+		if($gd->save()){
+			return Redirect::route('dashboard')->with('success','Successfully edited');
+		}
+		else {
+
+			return Redirect::back()->with('error','Something went wrong.Try Again.')->withInput();
+		}
+
 	}
 
 	/**
