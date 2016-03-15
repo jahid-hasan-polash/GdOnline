@@ -16,7 +16,7 @@
                   <li>
 
                       <a href="{{ URL::route('gd.create') }}">
-                          <i class="fa fa-dashboard"></i>
+                          <i class="fa fa-tasks"></i>
                           <span>Create GD</span>
                       </a>
                   </li>
