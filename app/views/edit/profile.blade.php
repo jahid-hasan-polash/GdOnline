@@ -36,18 +36,18 @@
 
 
 
-                    {{ Form::text('username', '', array('class' => 'form-control', 'placeholder' => 'User name', 'autofocus')) }}
+                    {{ Form::text('username', null, array('class' => 'form-control', 'placeholder' => 'User name', 'autofocus')) }}
 
 
 
-                    {{ Form::text('address', '', array('class' => 'form-control', 'placeholder' => 'Address', 'autofocus')) }}
+                    {{ Form::text('address', null, array('class' => 'form-control', 'placeholder' => 'Address', 'autofocus')) }}
 
 
-                    {{ Form::text('phone', '', array('class' => 'form-control', 'placeholder' => 'Phone', 'autofocus')) }}
+                    {{ Form::text('phone', null, array('class' => 'form-control', 'placeholder' => 'Phone', 'autofocus')) }}
 
 
 
-                    {{ Form::email('email', '', array('class' => 'form-control', 'placeholder' => 'Email Address', 'autofocus')) }}
+                    {{ Form::email('email', null, array('class' => 'form-control', 'placeholder' => 'Email Address', 'autofocus')) }}
 
 
 

@@ -12,8 +12,14 @@
                           <span>Dashboard</span>
                       </a>
                   </li>
+                <!-- create gd -->
+                  <li>
 
-                  
+                      <a href="{{ URL::route('gd.create') }}">
+                          <i class="fa fa-dashboard"></i>
+                          <span>Create GD</span>
+                      </a>
+                  </li>
 
                   {{-- Roles & Permissions --}}
                   <li>

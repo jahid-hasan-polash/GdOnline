@@ -26,6 +26,9 @@ Route::group(array('before' => 'auth'), function()
 	Route::get('editProfile',array('as'=>'user.edit','uses'=>'UserController@edit'));
 	Route::post('editProfile',array('uses'=>'UserController@update'));
 
+	Route::get('create-gd',array('as'=>'gd.create','uses'=>'GdController@create'));
+	Route::post('create-gd',array('uses'=>'GdController@store'));
+
 	Route::get('GdProfile',array('as'=>'gd.profile', 'uses'=>'GdController@show'));
 
 });

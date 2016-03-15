@@ -21,7 +21,7 @@ class GdController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+		return View::make('Gd.create')->with('title','GdCreate');
 	}
 
 	/**
