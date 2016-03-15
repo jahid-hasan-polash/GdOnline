@@ -1,68 +1,59 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="">
-        <meta name="author" content="">
-        <meta name="keyword" content="">
-        <link rel="shortcut icon" href="img/favicon.png">
- 
-        <title>{{ $title }} - {{ Config::get('customConfig.siteName') }}</title>
-        
-        {{ HTML::style('css/bootstrap.min.css') }}
-        {{ HTML::style('css/bootstrap-reset.css') }}
-        {{ HTML::style('assets/font-awesome/css/font-awesome.css') }}
-        {{ HTML::style('css/style.css') }}
-        {{ HTML::style('css/style-responsive.css') }}
-        @yield('style')
-        {{ HTML::style('css/custom.css') }}
-
-        <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
-        <!--[if lt IE 9]>
-          {{ HTML::script('js/html5shiv.js') }}
-          {{ HTML::script('js/respond.min.js') }}
-        <![endif]-->
-    </head>
-
-    <body class="register-body">
-    <div class="container">
-            {{ Form::open(array('route' => 'user.edit', 'method' => 'post', 'class' => 'form-signin')) }}
-            <h2 class="form-signin-heading">Edit Profile</h2>
-            <div class="login-wrap">
-                    @include('includes.alert')
-
-                    {{ Form::number('n_id' ,null, array('class' => 'form-control', 'placeholder' => 'National Id No', 'autofocus')) }}
-
-
-
-                    {{ Form::text('username', null, array('class' => 'form-control', 'placeholder' => 'User name', 'autofocus')) }}
-
-
-
-                    {{ Form::text('address', null, array('class' => 'form-control', 'placeholder' => 'Address', 'autofocus')) }}
-
-
-                    {{ Form::text('phone', null, array('class' => 'form-control', 'placeholder' => 'Phone', 'autofocus')) }}
-
-
-
-                    {{ Form::email('email', null, array('class' => 'form-control', 'placeholder' => 'Email Address', 'autofocus')) }}
+@extends('layouts.default')
+@section('content')
+    <div class="row">
+        <div class="col-md-12">
+            @include('includes.alert')
+            <section class="panel">
+                <header class="panel-heading">
+                    {{ $title }}
+                </header>
+                <div class="panel-body">
+                    {{ Form::open(array('route' => 'user.edit','method'=>'post','class' => 'form-horizontal')) }}
+                    <!--National ID -->
+                    <div class="form-group">
+                        {{ Form::label('national-id', 'National Id No', array('class' => 'col-md-2 control-label')) }}
+                        <div class="col-md-4">
+                            {{ Form::number('national-id', '' , array('class' => 'form-control', 'placeholder' => 'National Id Number')) }}
+                        </div>
+                    </div>
+                    <!--Name -->
+                    <div class="form-group">
+                        {{ Form::label('username', 'Name', array('class' => 'col-md-2 control-label')) }}
+                        <div class="col-md-4">
+                            {{ Form::text('username', '' , array('class' => 'form-control', 'placeholder' => 'Username')) }}
+                        </div>
+                    </div>
+                    <!--Address -->
+                    <div class="form-group">
+                        {{ Form::label('address', 'Address', array('class' => 'col-md-2 control-label')) }}
+                        <div class="col-md-4">
+                            {{ Form::text('address', '' , array('class' => 'form-control', 'placeholder' => 'Address')) }}
+                        </div>
+                    </div>
+                    <!--Phone Number -->
+                    <div class="form-group">
+                        {{ Form::label('phone', 'Phone Number', array('class' => 'col-md-2 control-label')) }}
+                        <div class="col-md-4">
+                            {{ Form::text('phone', '' , array('class' => 'form-control', 'placeholder' => 'Phone Number')) }}
+                        </div>
+                    </div>
+                    <!--Email-->
+                    <div class="form-group">
+                        {{ Form::label('email', 'Email', array('class' => 'col-md-2 control-label')) }}
+                        <div class="col-md-4">
+                            {{ Form::email('email', '' , array('class' => 'form-control', 'placeholder' => 'Email Address')) }}
+                        </div>
+                    </div>
 
 
-
-                    {{ Form::submit('Go', array('class' => 'btn btn-lg btn-login btn-block')) }}
-            </div>
-
-        
-
-          {{ Form::close() }}
-
-      </div>
-
-    <!-- js placed at the end of the document so the pages load faster -->
-    {{ HTML::script('js/jquery.js') }}
-    {{ HTML::script('js/bootstrap.min.js') }}
-
-    </body>
-</html>
+                    <div class="form-group">
+                        <div class="col-lg-offset-2 col-lg-10">
+                            {{ Form::submit('Update', array('class' => 'btn btn-primary')) }}
+                        </div>
+                    </div>
+                    {{ Form::close() }}
+                </div>
+            </section>
+        </div>
+    </div>
+@stop

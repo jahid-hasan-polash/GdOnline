@@ -32,7 +32,31 @@ class GdController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		$rules=[
+		'topic' => 'required',
+		'occured-at' => 'required',
+		'description' => 'required'
+
+		];
+		$data= Input::all();
+
+		$validator = Validator::make($data,$rules);
+		if($validator->fails()){
+			return Redirect::back()->withInput()->withErrors($validator);
+		} 
+
+		$gd= new GdModel;
+		$gd->topic = $data['topic'];
+		$gd->occured_at = $data['occured-at'];
+		$gd->description = $data['description'];
+		$gd->requirement = $data['requirement'];
+
+		if($gd->save()){
+				return Redirect::route('dashboard')->with('success','GD created.');
+			}else {
+				return Redirect::back()->with('error','Something went wrong.Try Again.')->withInput();
+			}
+
 	}
 
 	/**
