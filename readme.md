@@ -12,10 +12,10 @@ To run this project please follow the following instructions
 3. For server name and password go to app/config/database.php directory and edit your server environment.
 
 4. Open command window in the project directory (/Github/GdOnline) and run command
-	 php artisan migrate
+	:: php artisan migrate
 
-5. After completion run 
-	php artisan serve
+5. After completion run command
+	:: php artisan serve
 
 6. And you are good to go. :) Go to http://localhost:8000 
 
