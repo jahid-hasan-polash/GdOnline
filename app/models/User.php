@@ -9,7 +9,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
 	use UserTrait, RemindableTrait;
 
-	protected $guarded = ['id','created_at','updated_at'];
+	protected $guarded = ['id'];
 
 	/**
 	 * The database table used by the model.
@@ -24,7 +24,12 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 */
 	protected $hidden = array('password', 'remember_token');
 
-	public function relationWithUserGd(){
-		return $this->belongsTo('UserGdModel');
+	public function Gd(){
+		return $this->hasMany('Gd');
 	}
+
+	/*public function relationWithUserGd(){
+		return $this->belongsTo('UserGdModel');
+	}*/
+
 }

@@ -1,7 +1,9 @@
 <?php
 
 class UserGdModel extends \Eloquent {
+	
 	protected $fillable = [];
+
 	protected $table = 'user_gd';
 
 	public function Users(){

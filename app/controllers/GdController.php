@@ -21,7 +21,7 @@ class GdController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('Gd.create')->with('title','GdCreate');
+		return View::make('Gd.create')->with('title','New General Diary');
 	}
 
 	/**
@@ -39,24 +39,39 @@ class GdController extends \BaseController {
 
 		];
 		$data= Input::all();
-
+		//Validation input
 		$validator = Validator::make($data,$rules);
 		if($validator->fails()){
 			return Redirect::back()->withInput()->withErrors($validator);
 		} 
-
-		$gd= new GdModel;
+		//Save data into gd_info table
+		$gd= new Gd;
+		$gd->user_id = Auth::user()->id;
 		$gd->topic = $data['topic'];
 		$gd->occured_at = $data['occured-at'];
 		$gd->description = $data['description'];
 		$gd->requirement = $data['requirement'];
 
-		//$userGd= new UserGd;
-
-
 		if($gd->save()){
-				return Redirect::route('dashboard')->with('success','GD created.');
+			//return Redirect::route('dashboard')->with('success','GD created.');
+			//save data into user_gd table while input is saved in
+			// gd_info table
+			$userGd= new UserGdModel;
+        	$userGd->user_id = Auth::user()->id;
+			$userGd->gd_id = $gd->id;
+
+			if($userGd->save()){
+				return Redirect::route('dashboard')->with('success','GD created.');	
+			}
+				
+			else {
+				//If saving into user_gd table fails delete the gd from gd_info table
+				$item= Gd::findOrFail($gd->id); 
+				$item->delete($gd->id);
+				return Redirect::back()->with('error','Something went wrong.Try Again.')->withInput();
+			}		
 			}else {
+
 				return Redirect::back()->with('error','Something went wrong.Try Again.')->withInput();
 			}
 
@@ -71,7 +86,12 @@ class GdController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+		$gd = Gd::find($id);
+		$user = Auth::user();
+		return View::make('gd.profile')
+				->with('title','Gd Profile')
+				->with('user',$user)
+				->with('gd',$gd);
 	}
 
 	/**
@@ -83,7 +103,7 @@ class GdController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		$gd= GdModel::findOrFail($id);
+		$gd= Gd::findOrFail($id);
 
 		return View::make('edit.gd')
 			->with('gd',$gd)
@@ -99,7 +119,7 @@ class GdController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		$gd= GdModel::findOrFail($id);
+		$gd= Gd::findOrFail($id);
 		$gd->fill(Input::all());
 		
 		if($gd->save()){
@@ -121,7 +141,12 @@ class GdController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		$item= Gd::findOrFail($gd->id); 
+		if($item->delete($gd->id)){
+		return Redirect::back()->with('error','Something went wrong.Try Again.');	
+		}
+		return Redirect::route('dashboard')->with('success','Successfully Deleted.');
+		
 	}
 
 }

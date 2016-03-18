@@ -6,7 +6,7 @@
         <meta name="keyword" content="">
         <link rel="shortcut icon" href="img/favicon.png">
 
-        <title>{{ $title }} - {{ Config::get('customConfig.names.siteName')}}</title>
+        <title>{{ $title }} </title>
 
         <!-- Bootstrap core CSS -->
 

@@ -22,7 +22,7 @@
         </section>-->
          
         
-        <h1>Hello , {{ $data['username'] }} </h1>
+        <h1>Hello, {{ $data['username'] }} </h1>
                 <h3>Your National ID No: {{ $data['n_id'] }}</h3>
                 <h3>Your Address : {{ $data['address'] }}</h3>
                 <h3>Your Phone Number : {{ $data['phone'] }}</h3>
