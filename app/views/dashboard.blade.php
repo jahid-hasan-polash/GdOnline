@@ -20,7 +20,8 @@
                                 <th class="text-center">Subject</th>
                                 <th class="text-center">Occured At</th>
                                 <th class="text-center">See More</th>
-                                <th class="text-center">Edit</th>         
+                                <th class="text-center">Edit</th>
+                                <th class="text-center">Delete</th>         
                             </tr>
                             </thead>
                             <tbody>
@@ -31,6 +32,7 @@
                                     <td >{{ $gd->created_at}}</td>
                                     <td ><a href="{{URL::route('gd.profile', $gd->id)}}" class="btn btn-primary">See More</a></td>
                                     <td ><a href="{{URL::route('gd.edit', $gd->id)}}" class="btn btn-danger">Edit</a></td>
+                                    <td ><a href="{{URL::route('gd.delete', $gd->id)}}" class="btn btn-danger">Delete</a></td>
                                 </tr>
                             @endforeach
                             </tbody>

@@ -141,12 +141,18 @@ class GdController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		$item= Gd::findOrFail($gd->id); 
+		/*$item= Gd::findOrFail($gd->id); 
 		if($item->delete($gd->id)){
-		return Redirect::back()->with('error','Something went wrong.Try Again.');	
+			
 		}
-		return Redirect::route('dashboard')->with('success','Successfully Deleted.');
+		return Redirect::route('dashboard')->with('success','Successfully Deleted.');*/
 		
+		try{
+			Gd::destroy($id);
+			return Redirect::route('dashboard')->with('success','Successfully Deleted.');
+		}catch(Exception $e){
+			return Redirect::back()->with('error','Something went wrong.Try Again.');
+		}
 	}
 
 }
