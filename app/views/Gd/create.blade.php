@@ -18,6 +18,14 @@
                     </div>
 
                     <div class="form-group">
+                        {{ Form::label('ps_id', 'Occurance-place*', array('class' => 'col-md-2 control-label')) }}
+                        <div class="col-md-4">
+                            {{ Form::select('ps_id', $area, null, array('class' => 'form-control', 'required')) }}
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
                         {{ Form::label('occured-at', 'Occured-at*', array('class' => 'col-md-2 control-label')) }}
                         <div class="col-md-4">
                             {{ Form::text('occured-at', '' , array('class' => 'form-control', 'placeholder' => 'date-month-year')) }}

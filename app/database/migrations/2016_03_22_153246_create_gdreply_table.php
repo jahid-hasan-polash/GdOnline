@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateGdReplyTable extends Migration {
+class CreateGdreplyTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -14,6 +14,7 @@ class CreateGdReplyTable extends Migration {
 	{
 		Schema::create('gd_reply', function(Blueprint $table)
 		{
+			$table->increments('id');
 			$table->integer('Gd_id')->unsigned()->index();
 			$table->foreign('Gd_id')
 					->references('id')->on('gd_info')

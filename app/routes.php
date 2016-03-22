@@ -34,7 +34,7 @@ Route::group(array('before' => 'auth'), function()
 	Route::get('gdProfile/{id}', array('as'=>'gd.profile', 'uses'=>'GdController@show'));
 
 	//Admin routes
-	//Route::get();
+	Route::get('admin/dashboard',array('as'=>'admin.dashboard','uses'=>'AdminController@index'));
 
 });
 

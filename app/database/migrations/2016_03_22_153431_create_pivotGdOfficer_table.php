@@ -14,6 +14,8 @@ class CreatePivotGdOfficerTable extends Migration {
 	{
 		Schema::create('gd_officer_rel', function(Blueprint $table)
 		{
+			$table->increments('id');
+
 			$table->integer('gd_id')->unsigned()->index();
 			$table->foreign('gd_id')
 				      ->references('id')->on('gd_info')
@@ -23,6 +25,7 @@ class CreatePivotGdOfficerTable extends Migration {
 			$table->foreign('office_id')
 				      ->references('id')->on('officer')
 				      ->onDelete('cascade')->onUpdate('cascade');
+				      
 			$table->timestamps();
 		});
 	}

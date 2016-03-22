@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePivotUsergdTable extends Migration {
+class CreateGdInfoTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,17 +12,21 @@ class CreatePivotUsergdTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('user_gd', function(Blueprint $table)
+		Schema::create('gd_info', function(Blueprint $table)
 		{
+			$table->increments('id');
+			
 			$table->integer('user_id')->unsigned()->index();
 			$table->foreign('user_id')
 				      ->references('id')->on('users')
 				      ->onDelete('cascade')->onUpdate('cascade');
 
-			$table->integer('gd_id')->unsigned()->index();
-			$table->foreign('gd_id')
-				      ->references('id')->on('gd_info')
-				      ->onDelete('cascade')->onUpdate('cascade');
+			$table->string('topic');
+			$table->integer('thana_id');
+			$table->string('occured_at');
+			$table->text('description');
+			$table->text('requirement')->nullable();
+			//$table->integer('gd_no')->nullable();
 			$table->timestamps();
 		});
 	}
@@ -34,7 +38,7 @@ class CreatePivotUsergdTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('user_gd');
+		Schema::drop('gd_info');
 	}
 
 }

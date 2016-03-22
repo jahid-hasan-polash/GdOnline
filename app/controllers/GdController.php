@@ -21,7 +21,11 @@ class GdController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('Gd.create')->with('title','New General Diary');
+		$area = Area::lists('area_name','id');
+
+		return View::make('Gd.create')
+				->with('title','New General Diary')
+				->with('area',$area);
 	}
 
 	/**
@@ -34,6 +38,7 @@ class GdController extends \BaseController {
 	{
 		$rules=[
 		'topic' => 'required',
+		'ps_id' => 'required',
 		'occured-at' => 'required',
 		'description' => 'required'
 
@@ -44,10 +49,14 @@ class GdController extends \BaseController {
 		if($validator->fails()){
 			return Redirect::back()->withInput()->withErrors($validator);
 		} 
+
+		$thana_id = Area::findOrFail($data['ps_id'])->ps_id;
+
 		//Save data into gd_info table
 		$gd= new Gd;
 		$gd->user_id = Auth::user()->id;
 		$gd->topic = $data['topic'];
+		$gd->thana_id = $thana_id;
 		$gd->occured_at = $data['occured-at'];
 		$gd->description = $data['description'];
 		$gd->requirement = $data['requirement'];
@@ -104,9 +113,11 @@ class GdController extends \BaseController {
 	public function edit($id)
 	{
 		$gd= Gd::findOrFail($id);
+		$area = Area::lists('area_name','id');
 
 		return View::make('edit.gd')
 			->with('gd',$gd)
+			->with('area',$area)
 			->with('title','Edit');
 	}
 

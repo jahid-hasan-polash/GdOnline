@@ -10,6 +10,7 @@ class OfficerTableSeeder extends Seeder {
 		DB::table('officer')->delete();
 		$officer= array(
 			[
+			'ps_id' => 101,
 			'name' => 'Ashrafur Rahman',
 			'email' => 'Ashrafur@mail.com',
 			'phone_number' => '01877777777',
@@ -19,6 +20,7 @@ class OfficerTableSeeder extends Seeder {
 			],
 
 			[
+			'ps_id' => 101,
 			'name' => 'Moin mia',
 			'email' => 'Moin@mail.com',
 			'phone_number' => '01866666666',
@@ -28,6 +30,7 @@ class OfficerTableSeeder extends Seeder {
 			],
 
 			[
+			'ps_id' => 101,
 			'name' => 'Rafiq hasan',
 			'email' => 'Rafiq@mail.com',
 			'phone_number' => '01855555555',

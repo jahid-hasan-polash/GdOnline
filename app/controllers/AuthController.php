@@ -33,6 +33,8 @@ class AuthController extends \BaseController {
 			return Redirect::back()->withInput()->withErrors($validator);
 		} 
 
+
+
 			$user = new User;
 			$user->n_id = $data['n_id'];
 			$user->username = $data['username'];
@@ -71,9 +73,6 @@ class AuthController extends \BaseController {
 		$allInput = Input::all();
 		$validation = Validator::make($allInput, $rules);
 
-		//dd($allInput);
-
-
 		if ($validation->fails())
 		{
 
@@ -82,22 +81,42 @@ class AuthController extends \BaseController {
 						->withErrors($validation);
 		} else
 		{
-
 			$credentials = array
 			(
 						'email'    => Input::get('email'),
 						'password' => Input::get('password')
 			);
 
-			if (Auth::attempt($credentials))
-			{
-				return Redirect::intended('dashboard');
-			} else
-			{
-				return Redirect::route('login')
-							->withInput()
-							->withErrors('Error in Email Address or Password.');
-			}
+		/*Check if he is a admin*/
+		switch($credentials['email']){
+
+			case 'admin1@mail.com':
+			case 'admin2@mail.com':
+			case 'admin3@mail.com':
+				if (Auth::attempt($credentials))
+					{
+						return Redirect::intended('admin/dashboard');
+					} else {
+
+						return Redirect::route('login')
+									->withInput()
+									->withErrors('Error in Email Address or Password.');
+					}
+
+				break;
+			default :
+				if (Auth::attempt($credentials))
+					{
+						return Redirect::intended('dashboard');
+					} else {
+
+						return Redirect::route('login')
+									->withInput()
+									->withErrors('Error in Email Address or Password.');
+					}
+		}
+
+			
 		}
 	}
 
