@@ -97,8 +97,10 @@ class GdController extends \BaseController {
 	{
 		$gd = Gd::find($id);
 		$user = Auth::user();
+		$police_station = Ps::findOrFail($gd->thana_id)->ps_name;
 		return View::make('gd.profile')
 				->with('title','Gd Profile')
+				->with('police_station',$police_station)
 				->with('user',$user)
 				->with('gd',$gd);
 	}
@@ -130,8 +132,16 @@ class GdController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		$gd= Gd::findOrFail($id);
-		$gd->fill(Input::all());
+		$gd = Gd::findOrFail($id);
+		$data = Input::all();
+		$thana_id = Area::findOrFail($data['ps_id'])->ps_id;
+
+		$gd->user_id = Auth::user()->id;
+		$gd->topic = $data['topic'];
+		$gd->thana_id = $thana_id;
+		$gd->occured_at = $data['occured_at'];
+		$gd->description = $data['description'];
+		$gd->requirement = $data['requirement'];
 		
 		if($gd->save()){
 			return Redirect::route('dashboard')->with('success','Successfully edited');
