@@ -20,6 +20,13 @@
                           <span>Create GD</span>
                       </a>
                   </li>
+
+                  <li>
+                    <a href="{{ URL::route('user.edit')}}" >
+                        <i class="fa fa-user"></i>
+                        <span>Edit Profile</span>
+                    </a>
+                  </li>
 <!--
                   {{-- Roles & Permissions --}}
                   <li>

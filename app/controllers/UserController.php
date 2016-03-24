@@ -10,7 +10,9 @@ class UserController extends \BaseController {
 	 */
 	public function show()
 	{
-		return View::make('user.profile')->with('title','Profile');
+		return View::make('user.profile')
+			->with('title','Profile')
+			->with('user',Auth::user());
 	}
 
 	/**
