@@ -11,6 +11,17 @@ class UserTableSeeder extends Seeder {
 
 		$users = [
 					[
+								'n_id'		 => '123456799',
+								'username'	 => 'Super Admin',
+								'address'	 => 'Police',
+								'phone'		 => '01929796984',
+								'email'      => 'superadmin@mail.com',
+								'password'   => Hash::make('12345'),
+								'created_at' => date('Y-m-d H:i:s'),
+								'updated_at' => date('Y-m-d H:i:s')
+					],
+
+					[
 								'n_id'		 => '123456789',
 								'username'	 => 'Admin1',
 								'address'	 => 'Police',
@@ -46,7 +57,7 @@ class UserTableSeeder extends Seeder {
 					[
 								'n_id'		 => '123789455',
 								'username'	 => 'Polash',
-								'address'	 => 'Police',
+								'address'	 => 'Alipara',
 								'phone'		 => '01929796984',
 								'email'      => 'polash@gmail.com',
 								'password'   => Hash::make('12345'),

@@ -90,6 +90,7 @@ class AuthController extends \BaseController {
 		/*Check if he is a admin*/
 		switch($credentials['email']){
 
+			case 'superadmin@mail.com':
 			case 'admin1@mail.com':
 			case 'admin2@mail.com':
 			case 'admin3@mail.com':

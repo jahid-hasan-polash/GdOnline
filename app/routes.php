@@ -25,6 +25,7 @@ Route::group(array('before' => 'auth'), function()
 	Route::get('profile', array('as'=>'user.profile', 'uses'=>'UserController@show'));
 	Route::get('profile/edit', array('as'=>'user.edit', 'uses'=>'UserController@edit'));
 	Route::put('profile/update',  array('as'=>'user.update', 'uses'=>'UserController@update'));
+
 	//GD routes
 	Route::get('create-gd', array('as'=>'gd.create','uses'=>'GdController@create'));
 	Route::post('create-gd', array('as'=>'gd.store','uses'=>'GdController@store'));
@@ -35,6 +36,15 @@ Route::group(array('before' => 'auth'), function()
 
 	//Admin routes
 	Route::get('admin/dashboard',array('as'=>'admin.dashboard','uses'=>'AdminController@index'));
+	Route::get('admin/show/gd',array('as'=>'admin.gdShow', 'uses'=>'AdminController@showTable'));
+	Route::get('admin/reply/{id}',array('as'=>'admin.reply', 'uses'=>'AdminController@reply'));
+	Route::put('admin/{id}/reply',array('as'=>'admin.doReply', 'uses'=>'AdminController@doReply'));
+	Route::get('admin/change-password',array('as'=>'admin.password.change', 'uses'=>'AdminController@changePassword'));
+	Route::get('admin/gd/{id}/profile',array('as'=>'admin.gd.profile', 'uses'=>'AdminController@gdProfile'));
+
+	//Officer routes
+	Route::get('admin/create/officer',array('as'=>'admin.createOfficer', 'uses'=>'OfficerController@create'));
+	Route::post('admin/create/officer',array('as'=>'officer.store', 'uses'=>'OfficerController@store'));
 
 });
 

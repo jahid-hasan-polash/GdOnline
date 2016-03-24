@@ -9,6 +9,10 @@ class Gd extends \Eloquent {
 		return $this->belongsTo('User');
 	}
 
+	public function gdReply(){
+		return $this->hasMany('GdReply','Gd_id','id');
+	}
+
 
 	/*public function relationWithUserGd(){
 		return $this->belongsTo('UserGdModel');

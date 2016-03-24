@@ -65,11 +65,12 @@ class GdController extends \BaseController {
 			//return Redirect::route('dashboard')->with('success','GD created.');
 			//save data into user_gd table while input is saved in
 			// gd_info table
-			$userGd= new UserGdModel;
-        	$userGd->user_id = Auth::user()->id;
-			$userGd->gd_id = $gd->id;
 
-			if($userGd->save()){
+			$gdReply = new GdReply;
+			$gdReply->Gd_id = $gd->id;
+			$gdReply->admin_level = 0;
+			$gdReply->reply = null;
+			if($gdReply->save()){
 				return Redirect::route('dashboard')->with('success','GD created.');	
 			}
 				
@@ -95,14 +96,25 @@ class GdController extends \BaseController {
 	 */
 	public function show($id)
 	{
+		
 		$gd = Gd::find($id);
-		$user = Auth::user();
+		$replys = GdReply::where('Gd_id',$id)->get();
+		$user = User::find($gd->user_id);
+		if($gd->officer_id == null){
+			$officer = 'Not assigned yet.';
+		} else {
+			$tempOfficer = Officer::find($gd->officer_id);
+			$officer = $tempOfficer->name;
+		}
+		
 		$police_station = Ps::findOrFail($gd->thana_id)->ps_name;
-		return View::make('gd.profile')
-				->with('title','Gd Profile')
+		return View::make('Gd.profile')
+				->with('title','GD show')
 				->with('police_station',$police_station)
 				->with('user',$user)
-				->with('gd',$gd);
+				->with('gd',$gd)
+				->with('officer',$officer)
+				->with('replys',$replys);
 	}
 
 	/**

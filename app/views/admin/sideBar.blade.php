@@ -7,7 +7,7 @@
 
                   <li>
 
-                      <a href="{{ URL::route('dashboard') }}">
+                      <a href="{{ URL::route('admin.dashboard') }}">
                           <i class="fa fa-dashboard"></i>
                           <span>Dashboard</span>
                       </a>
@@ -15,21 +15,31 @@
                 <!-- create gd -->
                   <li>
 
-                      <a href="{{ URL::route('gd.create') }}">
+                      <a href="{{ URL::route('admin.gdShow') }}">
                           <i class="fa fa-tasks"></i>
-                          <span>Create GD</span>
+                          <span>Watch Your GD</span>
                       </a>
                   </li>
-<!--
-                  {{-- Roles & Permissions --}}
+
+                  {{-- Create Officer --}}
                   <li>
 
-                      <a href="#">
-                          <i class="fa fa-gears"></i>
-                          <span>Roles & Permissions</span>
+                      <a href="{{ URL::route('admin.createOfficer') }}">
+                          <i class="fa fa-plus"></i>
+                          <span>Create Officer</span>
                       </a>
                   </li>
--->
+
+
+                  
+
+
+
+
+
+
+
+
 
               </ul>
               <!-- sidebar menu end-->

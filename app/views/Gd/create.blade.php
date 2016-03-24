@@ -28,9 +28,10 @@
                     <div class="form-group">
                         {{ Form::label('occured-at', 'Occured-at*', array('class' => 'col-md-2 control-label')) }}
                         <div class="col-md-4">
-                            {{ Form::text('occured-at', '' , array('class' => 'form-control', 'placeholder' => 'date-month-year')) }}
+                            {{ Form::text('occured-at', '' , array('class' => 'form-control', 'placeholder' => 'Select Date.....','id'=>'date')) }}
                         </div>
                     </div>
+
 
                     <div class="form-group">
                         {{ Form::label('description', 'Detail*', array('class' => 'col-md-2 control-label')) }}
@@ -38,6 +39,7 @@
                             {{ Form::textarea('description', '' , array('class' => 'form-control', 'placeholder' => 'GD detail')) }}
                         </div>
                     </div>
+
 
                     <div class="form-group">
                         {{ Form::label('requirement', 'Requirement', array('class' => 'col-md-2 control-label')) }}
@@ -60,4 +62,26 @@
             </section>
         </div>
     </div>
+@stop
+
+@section('script')
+
+ {{ HTML::style('assets/bootstrap-datepicker/css/datepicker.css') }}
+ 
+  {{ HTML::script('assets/bootstrap-datepicker/js/bootstrap-datepicker.js') }}
+
+
+   <script type="text/javascript">
+       $(document).ready(function() {
+           $("#date").datepicker({
+               format: 'yyyy-mm-dd'
+           });
+           $( "#date" ).datepicker( "setDate", new Date() );
+
+       
+       });
+
+
+
+   </script>
 @stop

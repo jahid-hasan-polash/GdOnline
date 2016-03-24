@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('layouts.adminDefault')
 @section('content')
     <div class="row">
         <div class="col-md-12">
@@ -36,7 +36,7 @@
 	                    @if(count($replys))
 	                    	@foreach($replys as $reply)
 	                    		@if($reply->admin_level==0)
-	                    			Yet Not Varified
+	                    			Yet Not varified
 	                    		@else
 	                    		<h5>Admin level: {{ $reply->admin_level }} </h5>
 	                    		<p>{{ $reply->reply }}</p><br>

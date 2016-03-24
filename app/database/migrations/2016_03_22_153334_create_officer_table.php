@@ -24,7 +24,6 @@ class CreateOfficerTable extends Migration {
 			$table->string('name');
 			$table->string('email')->unique();
 			$table->text('phone_number');
-			$table->string('password');
 			$table->timestamps();
 		});
 	}

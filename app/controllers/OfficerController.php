@@ -3,17 +3,6 @@
 class OfficerController extends \BaseController {
 
 	/**
-	 * Display a listing of the resource.
-	 * GET /officer
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		//
-	}
-
-	/**
 	 * Show the form for creating a new resource.
 	 * GET /officer/create
 	 *
@@ -21,7 +10,10 @@ class OfficerController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+		$ps = Ps::lists('ps_name','id');
+		return View::make('officer.create')
+				->with('ps',$ps)
+				->with('title','Entry Officer');
 	}
 
 	/**
@@ -32,55 +24,31 @@ class OfficerController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
-	}
+		$rules = [
+					'ps_id'	=> 'required',
+					'name' => 'required',
+					'phone' =>	'required',
+					'email' => 'required|email',
+		];
 
-	/**
-	 * Display the specified resource.
-	 * GET /officer/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
+		$data = Input::all();
 
-	/**
-	 * Show the form for editing the specified resource.
-	 * GET /officer/{id}/edit
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
+		$validator = Validator::make($data,$rules);
+		if($validator->fails()){
+			return Redirect::back()->withInput()->withErrors($validator);
+		} 
 
-	/**
-	 * Update the specified resource in storage.
-	 * PUT /officer/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
+		$officer = new Officer;
+		$officer->ps_id = $data['ps_id'];
+		$officer->name = $data['name'];
+		$officer->email = $data['email'];
+		$officer->phone_number = $data['phone'];
 
-	/**
-	 * Remove the specified resource from storage.
-	 * DELETE /officer/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
+		if($officer->save()){
+				return Redirect::route('admin.dashboard')->with('success','Officer entry successful');
+			}else {
+				return Redirect::back()->with('error','Something went wrong.Try Again.');
+			}
 	}
 
 }
