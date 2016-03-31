@@ -11,15 +11,19 @@ class PsTableSeeder extends Seeder {
 		$records= array(
 			[
 				'id' => 101,
-				'ps_name' => 'Jalalabad'
+				'ps_name' => 'Jalalabad',
+				'range_id' => 1
 			],
 
 			[
 				'id' => 102,
-				'ps_name' => 'Kotowali'
+				'ps_name' => 'Kotowali',
+				'range_id' => 2
 			]
 			);
 		DB::table('ps')->insert($records);
+
+		
 	}
 
 }

@@ -24,9 +24,11 @@ class CreateGdInfoTable extends Migration {
 			$table->string('topic');
 			$table->integer('thana_id');
 			$table->string('occured_at');
+			$table->string('occurance_place');
 			$table->text('description');
 			$table->text('requirement')->nullable();
 			$table->integer('officer_id')->nullable();
+			$table->integer('layer');
 			$table->timestamps();
 		});
 	}

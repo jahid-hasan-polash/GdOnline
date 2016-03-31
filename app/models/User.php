@@ -28,6 +28,9 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		return $this->hasMany('Gd');
 	}
 
+	public function role(){
+		return $this->hasOne('Role');
+	}
 	/*public function relationWithUserGd(){
 		return $this->belongsTo('UserGdModel');
 	}*/

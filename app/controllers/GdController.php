@@ -51,6 +51,7 @@ class GdController extends \BaseController {
 		} 
 
 		$thana_id = Area::findOrFail($data['ps_id'])->ps_id;
+		$area_name = Area::findOrFail($data['ps_id'])->area_name;
 
 		//Save data into gd_info table
 		$gd= new Gd;
@@ -58,8 +59,10 @@ class GdController extends \BaseController {
 		$gd->topic = $data['topic'];
 		$gd->thana_id = $thana_id;
 		$gd->occured_at = $data['occured-at'];
+		$gd->occurance_place = $area_name;
 		$gd->description = $data['description'];
 		$gd->requirement = $data['requirement'];
+		$gd->layer = 0;
 
 		if($gd->save()){
 			//return Redirect::route('dashboard')->with('success','GD created.');
@@ -128,10 +131,13 @@ class GdController extends \BaseController {
 	{
 		$gd= Gd::findOrFail($id);
 		$area = Area::lists('area_name','id');
+		$area_object = Area::where('area_name',Gd::findOrFail($id)->occurance_place)->first();
+		//return $area_object;
 
 		return View::make('edit.gd')
 			->with('gd',$gd)
 			->with('area',$area)
+			->with('occurance_place_id',$area_object->id)
 			->with('title','Edit');
 	}
 
@@ -147,11 +153,13 @@ class GdController extends \BaseController {
 		$gd = Gd::findOrFail($id);
 		$data = Input::all();
 		$thana_id = Area::findOrFail($data['ps_id'])->ps_id;
+		$area_name = Area::findOrFail($data['ps_id'])->area_name;
 
 		$gd->user_id = Auth::user()->id;
 		$gd->topic = $data['topic'];
 		$gd->thana_id = $thana_id;
 		$gd->occured_at = $data['occured_at'];
+		$gd->occurance_place = $area_name;
 		$gd->description = $data['description'];
 		$gd->requirement = $data['requirement'];
 		
@@ -186,6 +194,18 @@ class GdController extends \BaseController {
 		}catch(Exception $e){
 			return Redirect::back()->with('error','Something went wrong.Try Again.');
 		}
+	}
+
+
+	/**
+	* Depricate the selected GD
+	* return GD->layer=-1
+	*/
+	public function depricate($id){
+		$gd = Gd::findOrFail($id);
+		$gd->layer = -1;
+		$gd->save();
+		return Redirect::route('admin.dashboard')->with('success','Gd Depricated.');
 	}
 
 }

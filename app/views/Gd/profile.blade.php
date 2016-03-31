@@ -22,6 +22,7 @@
                     <h4><i><b>GD Info :</b></i></h4>
                     <h4>Subject: {{ $gd->topic }}</h4>
                     <h4>Occurance Date: {{ $gd->occured_at }}</h4>
+                    <h4>Occurance Place: {{ $gd->occurance_place }}</h4>
                     <h5><i><b>Description: </b></i></h5>
                     <p>{{ $gd->description }}</p><br>
                     <h5><i><b>Requirements: </b></i></h5>
@@ -30,7 +31,11 @@
 
                     <div class="form-group">
                     <h4><i><b>Aditional Info :</b></i></h4>
-                    <h4>Officer Assigned: {{ $officer }}</h4>
+                    @if($officer == 'Not assigned yet.')
+                        <h4>Officer Assigned: {{ $officer }}</h4>
+                    @else
+                    <h4>Officer Assigned: <u><a href="{{URL::route('officer.profile', $gd->officer_id)}}">{{ $officer }}</a></u></h4>
+                    @endif
                     <h4><i>Reply From Police Station:</i></h4>
 
 	                    @if(count($replys))

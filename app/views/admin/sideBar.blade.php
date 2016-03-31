@@ -30,15 +30,15 @@
                       </a>
                   </li>
 
+                <!-- have to make controll who can see it. -->
+                  {{-- Create Admin --}}
+                  <li>
 
-                  
-
-
-
-
-
-
-
+                      <a href="{{ URL::route('admin.create') }}">
+                          <i class="fa fa-plus"></i>
+                          <span>Create Admin</span>
+                      </a>
+                  </li>
 
 
               </ul>

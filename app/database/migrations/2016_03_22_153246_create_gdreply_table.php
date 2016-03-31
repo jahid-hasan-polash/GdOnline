@@ -19,7 +19,9 @@ class CreateGdreplyTable extends Migration {
 			$table->foreign('Gd_id')
 					->references('id')->on('gd_info')
 					->onDelete('cascade')->onUpdate('cascade');
-			$table->integer('admin_level');
+
+			$table->integer('admin_level');//This will be admin_id
+
 			$table->text('reply')->nullable();
 			$table->timestamps();
 		});

@@ -1,7 +1,7 @@
 @extends('layouts.adminDefault')
     @section('content')
         @include('includes.alert')
-        <h2>Hello!! You are level {{Auth::user()->id-1 }} admin.</h2>
+        <h2>Hello!! You are level {{$role}} admin.</h2>
         <h3>You have the following GDs' to review:</h3> 
          <div class="panel-body">
                     @if(count($gds))
@@ -17,15 +17,31 @@
                             </thead>
                             <tbody>
 
-                                @foreach($gds as $gd)
-                                <tr class="text-center">
-                                    <td >{{ $gd->gd->id }}</td>
-                                    <td >{{ $gd->gd->topic}}</td>
-                                    <td >{{ $gd->gd->created_at}}</td>
-                                    <td ><a href="{{URL::route('admin.gd.profile', $gd->Gd_id)}}" class="btn btn-primary">See More</a></td>
-                                    <td ><a href="{{URL::route('admin.reply', $gd->Gd_id)}}" class="btn btn-danger">Reply</a></td>
-                                </tr>
-                                @endforeach
+                            @foreach($gds as $gd)
+                                @if($role == 1)
+                                    @if($gd->thana_id == $officer_ps_id)
+                                    <tr class="text-center">
+                                        <td >{{ $gd->id }}</td>
+                                        <td >{{ $gd->topic}}</td>
+                                        <td >{{ $gd->created_at}}</td>
+                                        <td ><a href="{{URL::route('admin.gd.profile', $gd->id)}}" class="btn btn-primary">See More</a></td>
+                                        <td ><a href="{{URL::route('admin.reply', $gd->id)}}" class="btn btn-danger">Reply</a></td>
+                                    </tr>
+                                    @endif
+                                @else
+                                    <tr class="text-center">
+                                        <td >{{ $gd->id }}</td>
+                                        <td >{{ $gd->topic}}</td>
+                                        <td >{{ $gd->created_at}}</td>
+                                        <td ><a href="{{URL::route('admin.gd.profile', $gd->id)}}" class="btn btn-primary">See More</a></td>
+                                        @if($role != 4)
+                                        <td ><a href="{{URL::route('admin.reply', $gd->id)}}" class="btn btn-danger">Reply</a></td>
+                                        @else 
+                                        <td ><a href="{{URL::route('superAdmin.depricate', $gd->id)}}" class="btn btn-danger">Depricate</a></td>
+                                        @endif
+                                    </tr>
+                                @endif
+                            @endforeach
                             
                             </tbody>
                         </table>

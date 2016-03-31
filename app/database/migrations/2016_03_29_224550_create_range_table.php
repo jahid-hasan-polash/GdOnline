@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePivotUserGdTable extends Migration {
+class CreateRangeTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,18 +12,14 @@ class CreatePivotUserGdTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('user_gd', function(Blueprint $table)
+		Schema::create('range', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('user_id')->unsigned()->index();
-			$table->foreign('user_id')
+			$table->integer('admin_id')->unsigned()->index();
+			$table->foreign('admin_id')
 				      ->references('id')->on('users')
 				      ->onDelete('cascade')->onUpdate('cascade');
-
-			$table->integer('gd_id')->unsigned()->index();
-			$table->foreign('gd_id')
-				      ->references('id')->on('gd_info')
-				      ->onDelete('cascade')->onUpdate('cascade');
+			$table->string('range');
 			$table->timestamps();
 		});
 	}
@@ -35,7 +31,7 @@ class CreatePivotUserGdTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('user_gd');
+		Schema::drop('range');
 	}
 
 }

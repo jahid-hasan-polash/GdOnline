@@ -1,9 +1,11 @@
 <?php
 
-//Route::get('/', ['as'=>'home','uses'=>'HomeController@showWelcome']);
 Route::get('/',function(){
 	return Redirect::route('dashboard');
-});
+	});
+Route::get('/admin',function(){
+	return Redirect::route('admin.dashboard');
+	});
 
 	//Before login
 Route::group(['before' => 'guest'], function(){
@@ -36,15 +38,19 @@ Route::group(array('before' => 'auth'), function()
 
 	//Admin routes
 	Route::get('admin/dashboard',array('as'=>'admin.dashboard','uses'=>'AdminController@index'));
+	Route::get('admin/create',array('as'=>'admin.create','uses'=>'AdminController@create'));
+	Route::post('admin/create',array('as'=>'admin.store','uses'=>'AdminController@store'));
 	Route::get('admin/show/gd',array('as'=>'admin.gdShow', 'uses'=>'AdminController@showTable'));
 	Route::get('admin/reply/{id}',array('as'=>'admin.reply', 'uses'=>'AdminController@reply'));
 	Route::put('admin/{id}/reply',array('as'=>'admin.doReply', 'uses'=>'AdminController@doReply'));
 	Route::get('admin/change-password',array('as'=>'admin.password.change', 'uses'=>'AdminController@changePassword'));
 	Route::get('admin/gd/{id}/profile',array('as'=>'admin.gd.profile', 'uses'=>'AdminController@gdProfile'));
+	Route::get('SuperAdmin/depricate/{id}',array('as'=>'superAdmin.depricate', 'uses'=>'GdController@depricate'));
 
 	//Officer routes
 	Route::get('admin/create/officer',array('as'=>'admin.createOfficer', 'uses'=>'OfficerController@create'));
 	Route::post('admin/create/officer',array('as'=>'officer.store', 'uses'=>'OfficerController@store'));
+	Route::get('officer/{id}',array('as'=>'officer.profile','uses'=>'OfficerController@show'));
 
 });
 

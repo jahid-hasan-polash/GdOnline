@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePsTable extends Migration {
+class CreateAdminRoleTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,11 +12,10 @@ class CreatePsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('ps', function(Blueprint $table)
+		Schema::create('admin_role', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->string('ps_name');
-			$table->integer('range_id');
+			$table->string('name');
 			$table->timestamps();
 		});
 	}
@@ -28,7 +27,7 @@ class CreatePsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('ps');
+		Schema::drop('admin_role');
 	}
 
 }

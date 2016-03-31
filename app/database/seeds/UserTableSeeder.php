@@ -8,6 +8,7 @@ class UserTableSeeder extends Seeder {
 	public function run()
 	{
 		DB::table('users')->delete();
+		DB::table('role')->delete();
 
 		$users = [
 					[
@@ -16,39 +17,6 @@ class UserTableSeeder extends Seeder {
 								'address'	 => 'Police',
 								'phone'		 => '01929796984',
 								'email'      => 'superadmin@mail.com',
-								'password'   => Hash::make('12345'),
-								'created_at' => date('Y-m-d H:i:s'),
-								'updated_at' => date('Y-m-d H:i:s')
-					],
-
-					[
-								'n_id'		 => '123456789',
-								'username'	 => 'Admin1',
-								'address'	 => 'Police',
-								'phone'		 => '01929796984',
-								'email'      => 'admin1@mail.com',
-								'password'   => Hash::make('12345'),
-								'created_at' => date('Y-m-d H:i:s'),
-								'updated_at' => date('Y-m-d H:i:s')
-					],
-
-					[
-								'n_id'		 => '987654321',
-								'username'	 => 'Admin2',
-								'address'	 => 'Police',
-								'phone'		 => '01929796984',
-								'email'      => 'admin2@mail.com',
-								'password'   => Hash::make('12345'),
-								'created_at' => date('Y-m-d H:i:s'),
-								'updated_at' => date('Y-m-d H:i:s')
-					],
-
-					[
-								'n_id'		 => '123789456',
-								'username'	 => 'Admin3',
-								'address'	 => 'Police',
-								'phone'		 => '01929796984',
-								'email'      => 'admin3@mail.com',
 								'password'   => Hash::make('12345'),
 								'created_at' => date('Y-m-d H:i:s'),
 								'updated_at' => date('Y-m-d H:i:s')
@@ -66,7 +34,24 @@ class UserTableSeeder extends Seeder {
 					]
 		];
 
+		$roles = [
+					[
+								'user_id' => 1 ,
+								'role' => 4 , 
+								'created_at' => date('Y-m-d H:i:s'),
+								'updated_at' => date('Y-m-d H:i:s')
+					],
+
+					[
+								'user_id' => 2 ,
+								'role' => 0 ,
+								'created_at' => date('Y-m-d H:i:s'),
+								'updated_at' => date('Y-m-d H:i:s')
+					]
+		];
+
 		DB::table('users')->insert($users);
+		DB::table('role')->insert($roles);
 	}
 
 }

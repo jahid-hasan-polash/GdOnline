@@ -2,6 +2,17 @@
 
 class OfficerController extends \BaseController {
 
+	public function show($id){
+
+		$officer = Officer::findOrFail($id);
+		$ps_name = Ps::findOrFail($officer->ps_id)->ps_name;
+		return View::make('officer.profile')
+				->with('officer',$officer)
+				->with('ps_name',$ps_name)
+				->with('title', 'Officer Details');
+	}
+
+
 	/**
 	 * Show the form for creating a new resource.
 	 * GET /officer/create

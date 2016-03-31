@@ -18,7 +18,7 @@
                     </div>
 
                     {{-- If Admin is of level 3 --}}
-                    @if(Auth::user()->id == 4)
+                    @if($role == 3)
                     <div class="form-group">
                         {{ Form::label('officer_id', 'Assigned Officer*', array('class' => 'col-md-2 control-label')) }}
                         <div class="col-md-4">

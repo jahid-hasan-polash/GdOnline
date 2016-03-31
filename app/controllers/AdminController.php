@@ -17,27 +17,118 @@ class AdminController extends \BaseController {
 	}
 
 	/**
+	 * Show the form for creating a new resource.
+	 * GET /test/create
+	 *
+	 * @return Response
+	 */
+	public function create()
+	{
+		$admin_roles = AdminRole::lists('name','id');
+		$ps = Ps::lists('ps_name','id');
+		$short_range = DefaultRange::lists('short_range','id');
+		$long_range = DefaultRange::lists('long_range','id');
+
+		return View::make('admin.create')
+				->with('title','create admin')
+				->with('admin_roles',$admin_roles)
+				->with('ps',$ps)
+				->with('short_range',$short_range)
+				->with('long_range',$long_range);
+	}
+
+	/**
+	 * Show the form for creating a new resource.
+	 * GET /test/create
+	 *
+	 * @return Response
+	 */
+	public function store()
+	{
+		$rules = [
+					'n_id'	=> 'required',
+					'username'      => 'required',
+					'phone' 	=>	'required',
+					'email'       => 'required',
+					'password'       => 'required',
+
+		];
+
+		$data = Input::all();
+
+		$validator = Validator::make($data,$rules);
+		if($validator->fails()){
+			return Redirect::back()->withInput()->withErrors($validator);
+		} 
+
+
+			$user = new User;
+			$user->n_id = $data['n_id'];
+			$user->username = $data['username'];
+			$user->address = $data['address'];
+			$user->phone = $data['phone'];
+			$user->email = $data['email'];
+			$user->password = Hash::make($data['password']);
+			
+			if($user->save()){
+
+				$role = new Role;
+				$role->user_id = $user->id;
+				$role->role = $data['role'];
+				$role->save();
+
+				if($data['role']==1){
+
+					$officer = new Officer;
+					$officer->ps_id = $data['ps_id'];
+					$officer->name = $data['username'];
+					$officer->email = $data['email'];
+					$officer->phone_number = $data['phone'];
+					$officer->save();
+				
+				} else if($data['role']==2 ){
+					//Save the territory of the admin
+					//like south surma, Sylhet metropoliton police
+					$rangeName = DefaultRange::findOrFail($data['short_range'])->short_range;
+
+					$range = new Range;
+					$range->admin_id = $user->id;
+					$range->range = $rangeName; 
+					$range->save();
+				
+				} else if($data['role']==3 ){
+					$rangeName = DefaultRange::findOrFail($data['short_range'])->long_range;
+
+					$range = new Range;
+					$range->admin_id = $user->id;
+					$range->range = $rangeName;
+					$range->save();
+				}
+
+				return Redirect::route('admin.dashboard')->with('success','Admin Successfully Created');
+			}else {
+				return Redirect::back()->with('error','Something went wrong.Try Again.');
+			}
+	}
+
+	/**
 	 * Display a listing of the GDs.
 	 * GET /admin
 	 *
 	 * @return Gds
 	 */
 	public function showTable(){
-		 $id = Auth::user()->id;
-		 if($id == 1)
-		 {
-		 	$gds = Gd::all();
-		 	return View::make('admin.showGdSuperAdmin')
-				->with('title','GD to review')
-				->with('gds',$gds);
-		 }
-		 else if($id == 2){
-		 	$gds = GdReply::with('gd')->where('admin_level',0)->get();
-		 }else {
-		 	$gds = GdReply::with('gd')->where('admin_level',($id-2))->get(); 
-		 }
+		//officer
+		$officer_ps_id = null;
+		$role = Role::where('user_id',Auth::user()->id)->first()->role;
+		$gds = Gd::where('layer',$role-1)->get();
+		if($role==1){
+			$officer_ps_id = Officer::where('email',Auth::user()->email)->first()->ps_id;
+		}
 		return View::make('admin.showGd')
 				->with('title','GD to review')
+				->with('role',$role)
+				->with('officer_ps_id',$officer_ps_id)
 				->with('gds',$gds);
 	}
 	/**
@@ -50,15 +141,18 @@ class AdminController extends \BaseController {
 	public function reply($id)
 	{
 		$replys = GdReply::where('Gd_id',$id)->get();
+		$role = Role::where('user_id',Auth::user()->id)->first()->role;
 		foreach ($replys as $reply) {
-			if($reply->admin_level == Auth::user()->id-1){
+			if($reply->admin_level == $role){
 				return Redirect::back()->with('error','You have already replied in this GD.');
 			}
 		}
 		$officers = Officer::lists('name','id');
+		
 		return View::make('admin.reply')
 					->with('title','Admin reply')
 					->with('officers',$officers)
+					->with('role',$role)
 					->with('gd_id',$id);		
 	}
 
@@ -77,15 +171,17 @@ class AdminController extends \BaseController {
 
 		];
 		$data= Input::all();
+		$role = Role::where('user_id',Auth::user()->id)->first()->role;
 		//Validation input
 		$validator = Validator::make($data,$rules);
 		if($validator->fails()){
 			return Redirect::back()->withInput()->withErrors($validator);
 		} 
 
-		//if admin is level 1
+		
 		$gdReply = null;	
-		if(Auth::user()->id == 2){
+		//if admin is level 1
+		if($role == 1){
 			$gdReply = GdReply::where('Gd_id',$id)->first();
 		}
 		else {
@@ -93,15 +189,27 @@ class AdminController extends \BaseController {
 		}
 
 		$gdReply->Gd_id = $id;
-		$gdReply->admin_level = Auth::user()->id-1;
+		$gdReply->admin_level = $role;
 		$gdReply->reply = $data['reply'];
+		
 		//if officer selection is occured
-		if(Auth::user()->id == 4){
+		if($role == 3){
 			$gd = Gd::findOrFail($id);
-			$gd->officer_id = $data['officer_id'];
-			$gd->save();
+			$officer = Officer::findOrFail($data['officer_id']);
+			//check if the officer is from the same police station
+			if($gd->thana_id == $officer->ps_id){
+				$gd->officer_id = $data['officer_id'];
+				$gd->save();	
+			} else {
+				return Redirect::back()->with('error','Please check the Officer Table and GD Details to assign an officer adjecent to that police station.')->withInput();
+			}
+			
 		}
 		if($gdReply->save()){
+			//Set the gd layer
+			$gd = Gd::findOrFail($id);
+			$gd->layer = $role;
+			$gd->save();
 			return Redirect::route('admin.gdShow')->with('success','Successfully Replied.');
 		}
 		else {

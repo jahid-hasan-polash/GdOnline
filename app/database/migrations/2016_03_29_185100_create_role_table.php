@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePsTable extends Migration {
+class CreateRoleTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,11 +12,15 @@ class CreatePsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('ps', function(Blueprint $table)
+		Schema::create('role', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->string('ps_name');
-			$table->integer('range_id');
+			$table->integer('user_id')->unsigned()->index();
+			$table->foreign('user_id')
+				      ->references('id')->on('users')
+				      ->onDelete('cascade')->onUpdate('cascade');
+				      
+			$table->integer('role');
 			$table->timestamps();
 		});
 	}
@@ -28,7 +32,7 @@ class CreatePsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('ps');
+		Schema::drop('role');
 	}
 
 }

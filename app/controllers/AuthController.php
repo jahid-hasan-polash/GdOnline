@@ -44,6 +44,11 @@ class AuthController extends \BaseController {
 			$user->password = Hash::make($data['password']);
 			
 			if($user->save()){
+
+				$role = new Role;
+				$role->user_id = $user->id;
+				$role->role = 0;
+				$role->save();
 				return Redirect::route('login')->with('success','Registration Successful. You can log in now.');
 			}else {
 				return Redirect::back()->with('error','Something went wrong.Try Again.');
@@ -88,7 +93,7 @@ class AuthController extends \BaseController {
 			);
 
 		/*Check if he is a admin*/
-		switch($credentials['email']){
+		/*switch($credentials['email']){
 
 			case 'superadmin@mail.com':
 			case 'admin1@mail.com':
@@ -105,17 +110,24 @@ class AuthController extends \BaseController {
 					}
 
 				break;
-			default :
+			default :*/
 				if (Auth::attempt($credentials))
 					{
-						return Redirect::intended('dashboard');
+						$role = Role::where('user_id',Auth::user()->id)->first();
+						if($role->role == 0){
+							return Redirect::intended('dashboard');	
+						} else {
+							return Redirect::intended('admin/dashboard');
+						}
+
+						
 					} else {
 
 						return Redirect::route('login')
 									->withInput()
 									->withErrors('Error in Email Address or Password.');
 					}
-		}
+		//}
 
 			
 		}

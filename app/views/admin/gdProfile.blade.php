@@ -22,6 +22,7 @@
                     <h4><i><b>GD Info :</b></i></h4>
                     <h4>Subject: {{ $gd->topic }}</h4>
                     <h4>Occurance Date: {{ $gd->occured_at }}</h4>
+                    <h4>Occurance Place: {{ $gd->occurance_place }}</h4>
                     <h5><i><b>Description: </b></i></h5>
                     <p>{{ $gd->description }}</p><br>
                     <h5><i><b>Requirements: </b></i></h5>

@@ -21,7 +21,7 @@
                     <div class="form-group">
                         {{ Form::label('ps_id', 'Occurance-place*', array('class' => 'col-md-2 control-label')) }}
                         <div class="col-md-4">
-                            {{ Form::select('ps_id', $area ,$gd->thana_id, array('class' => 'form-control', 'required')) }}
+                            {{ Form::select('ps_id', $area, $occurance_place_id, array('class' => 'form-control', 'required')) }}
                         </div>
                     </div>
 

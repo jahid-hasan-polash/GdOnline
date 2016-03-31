@@ -47,6 +47,38 @@ class AreaTableSeeder extends Seeder {
 			'area_name' => 'Tuker Bajar',
 			'created_at' => date('Y-m-d H:i:s'),
 			'updated_at' => date('Y-m-d H:i:s')
+			],
+
+			[
+			'ps_id' => 102,
+			'ps_name' => 'Kotwali',
+			'area_name' => 'Noyashorok',
+			'created_at' => date('Y-m-d H:i:s'),
+			'updated_at' => date('Y-m-d H:i:s')
+			],
+
+			[
+			'ps_id' => 102,
+			'ps_name' => 'Kotwali',
+			'area_name' => 'Bondor',
+			'created_at' => date('Y-m-d H:i:s'),
+			'updated_at' => date('Y-m-d H:i:s')
+			],
+
+			[
+			'ps_id' => 102,
+			'ps_name' => 'Kotwali',
+			'area_name' => 'Amberkhana',
+			'created_at' => date('Y-m-d H:i:s'),
+			'updated_at' => date('Y-m-d H:i:s')
+			],
+
+			[
+			'ps_id' => 102,
+			'ps_name' => 'Kotwali',
+			'area_name' => 'Zindabazar',
+			'created_at' => date('Y-m-d H:i:s'),
+			'updated_at' => date('Y-m-d H:i:s')
 			]
 			);
 		DB::table('area')->insert($areas);

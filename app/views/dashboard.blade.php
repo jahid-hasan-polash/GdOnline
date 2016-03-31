@@ -20,8 +20,8 @@
                                 <th class="text-center">Subject</th>
                                 <th class="text-center">Occured At</th>
                                 <th class="text-center">See More</th>
-                                <th class="text-center">Edit</th>
-                                <th class="text-center">Delete</th>         
+                                <th class="text-center">Action</th> 
+
                             </tr>
                             </thead>
                             <tbody>
@@ -31,8 +31,12 @@
                                     <td >{{ $gd->topic}}</td>
                                     <td >{{ $gd->created_at}}</td>
                                     <td ><a href="{{URL::route('gd.profile', $gd->id)}}" class="btn btn-primary">See More</a></td>
-                                    <td ><a href="{{URL::route('gd.edit', $gd->id)}}" class="btn btn-danger">Edit</a></td>
-                                    <td ><a href="{{URL::route('gd.delete', $gd->id)}}" class="btn btn-danger">Delete</a></td>
+                                    
+                                    <td>@if($gd->layer == 0)
+                                    <a href="{{URL::route('gd.edit', $gd->id)}}" class="btn btn-danger">Edit</a>@endif
+                                    @if($gd->layer <= 0)
+                                    <a href="{{URL::route('gd.delete', $gd->id)}}" class="btn btn-danger">Delete</a></td>
+                                    @endif
                                 </tr>
                             @endforeach
                             </tbody>
