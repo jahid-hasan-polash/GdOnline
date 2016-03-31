@@ -19,4 +19,8 @@ To run this project please follow the following instructions
 
 6. And you are good to go. :) Go to http://localhost:8000 
 
+7. A default user is set for testing. email: polash@gmail.com password: 12345
+8. To enter admin facility login with email: superadmin@mail.com password: 12345
+9. After logged in as super admin you can create admins of level 1/2/3. :)
+
 Thanks a lot. 
